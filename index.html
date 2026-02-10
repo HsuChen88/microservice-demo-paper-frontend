@@ -215,7 +215,10 @@
           <label for="abstractText">Abstract</label>
           <textarea id="abstractText" name="abstractText" required placeholder="Brief summary of your paper..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary" onclick="generateTestData()">Generate</button>
+        </div>
       </form>
     </div>
   </div>
@@ -373,6 +376,51 @@ async function loadCatalog() {
   } catch (err) {
     container.innerHTML = '<div class="alert alert-error">Failed to load: ' + esc(err.message) + '</div>';
   }
+}
+
+// ── Generate Test Data ───────────────────────────────────
+function generateTestData() {
+  const titles = [
+    'Deep Learning Approaches for Natural Language Processing',
+    'Machine Learning in Healthcare: A Comprehensive Survey',
+    'Blockchain Technology for Secure Data Management',
+    'Neural Networks for Image Recognition',
+    'Quantum Computing: Current State and Future Prospects',
+    'Distributed Systems Architecture for Microservices',
+    'AI-Driven Solutions for Climate Change',
+    'Cybersecurity in the Age of IoT',
+    'Reinforcement Learning for Autonomous Vehicles',
+    'Cloud Computing Optimization Strategies'
+  ];
+
+  const authors = [
+    'Alice Chen',
+    'Bob Zhang',
+    'Carol Wang',
+    'David Liu',
+    'Emma Wu',
+    'Frank Lin',
+    'Grace Huang',
+    'Henry Chen',
+    'Iris Tang',
+    'Jack Zhou'
+  ];
+
+  const abstracts = [
+    'This paper presents a novel approach to solving complex problems in the field. We propose a new methodology that combines traditional techniques with modern innovations, resulting in significant improvements in performance and efficiency.',
+    'In this study, we investigate the application of advanced algorithms to real-world scenarios. Our experimental results demonstrate substantial gains over existing methods, with particular emphasis on scalability and reliability.',
+    'We introduce a comprehensive framework that addresses key challenges in the domain. Through extensive evaluation, we show that our solution outperforms state-of-the-art approaches while maintaining computational efficiency.',
+    'This research explores innovative techniques for enhancing system capabilities. Our contributions include theoretical analysis, practical implementation, and empirical validation across multiple datasets.',
+    'We present a systematic investigation of emerging trends and their implications. The findings reveal important insights that can guide future research directions and practical applications.'
+  ];
+
+  const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+  const randomAuthor = authors[Math.floor(Math.random() * authors.length)];
+  const randomAbstract = abstracts[Math.floor(Math.random() * abstracts.length)];
+
+  document.getElementById('title').value = randomTitle;
+  document.getElementById('author').value = randomAuthor;
+  document.getElementById('abstractText').value = randomAbstract;
 }
 
 // ── Utility ──────────────────────────────────────────────
